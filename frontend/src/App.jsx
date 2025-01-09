@@ -99,45 +99,50 @@ function App() {
       {isLoading ? (
         <div>Loading contacts...</div>
       ) : (
-        <table border="1">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Names</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.length > 0 ? (
-              contacts.map((contact) => (
-                <tr key={contact.id}>
-                  <td>{contact.id}</td>
-                  <td>{`${contact.firstName} ${contact.lastName}`}</td>
-                  <td>{contact.email}</td>
-                  <td>
-                    <button
-                      onClick={() =>
-                        setUpdateOpen({ open: true, contact })
-                      }
-                    >
-                      Update
-                    </button>
-                    <button
-                      onClick={() => deleteContact(contact.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
+        <>
+          <h1>
+            Contact management app
+          </h1>
+          <table border="1">
+            <thead>
               <tr>
-                <td colSpan="4">No contacts available</td>
+                <th>ID</th>
+                <th>Names</th>
+                <th>Email</th>
+                <th>Actions</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {contacts.length > 0 ? (
+                contacts.map((contact) => (
+                  <tr key={contact.id}>
+                    <td>{contact.id}</td>
+                    <td>{`${contact.firstName} ${contact.lastName}`}</td>
+                    <td>{contact.email}</td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          setUpdateOpen({ open: true, contact })
+                        }
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => deleteContact(contact.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="4">No contacts available</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </>
       )}
       <button onClick={() => setIsNewContactOpen(true)}>New Contact</button>
       {isNewContactOpen && (
